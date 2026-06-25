@@ -1,0 +1,107 @@
+---
+import Layout from '@layouts/Layout.astro';
+import Section from '@ui/Section.astro';
+import SectionHeading from '@ui/SectionHeading.astro';
+import Icon from '@ui/Icon.astro';
+import Button from '@ui/Button.astro';
+import CtaFinal from '@sections/CtaFinal.astro';
+import { ZONAS, SITE } from '@data/site';
+---
+
+<Layout
+  title="Zona de cobertura"
+  description={`Electricista en ${ZONAS.slice(0, 3).join(', ')} y comarca de Benavente. ${SITE.name} se desplaza por Zamora y León.`}
+>
+  <Section bg="black">
+    <div class="max-w-2xl">
+      <p class="eyebrow text-brand-yellow">Zona de cobertura</p>
+      <h1 class="text-display-lg mt-3">Electricista en la comarca de Benavente y alrededores</h1>
+      <p class="mt-5 text-lg text-brand-gray-border/80 leading-relaxed">
+        Me desplazo por municipios de las provincias de <strong>Zamora</strong> y <strong>León</strong>.
+        Si tienes dudas sobre si llego a tu zona, pregúntame directamente — sin compromiso.
+      </p>
+    </div>
+  </Section>
+
+  <Section bg="white">
+    <div class="grid md:grid-cols-2 gap-12 items-start">
+      <div>
+        <SectionHeading eyebrow="Municipios" title="¿Dónde trabajo?" />
+        <p class="mt-4 text-brand-gray leading-relaxed">
+          A continuación encontrarás una lista de los principales municipios en los que ofrezco
+          mis servicios de electricidad. La lista no es exhaustiva: si no ves tu pueblo,
+          llámame y lo comprobamos.
+        </p>
+        <ul class="mt-8 grid grid-cols-2 gap-2">
+          {ZONAS.map((zona) => (
+            <li class="flex items-center gap-2 text-sm font-semibold py-2 px-3 rounded-btn
+                        bg-brand-gray-light hover:bg-brand-yellow-soft transition-colors">
+              <Icon name="MapPin" class="w-4 h-4 text-brand-yellow-dark flex-shrink-0" />
+              {zona}
+            </li>
+          ))}
+        </ul>
+        <p class="mt-6 text-sm text-brand-gray">
+          ¿Tu municipio no aparece?{' '}
+          <a href="/contacto" class="font-semibold text-brand-black underline hover:text-brand-yellow-dark transition-colors">
+            Consúltame sin compromiso
+          </a>.
+        </p>
+      </div>
+
+      <div class="card p-8">
+        <div class="flex items-center gap-3 mb-5">
+          <span class="grid place-items-center w-12 h-12 rounded-full bg-brand-black">
+            <Icon name="MapPin" class="w-6 h-6 text-brand-yellow" />
+          </span>
+          <div>
+            <p class="font-bold">Radio de desplazamiento</p>
+            <p class="text-sm text-brand-gray">Comarca de Benavente</p>
+          </div>
+        </div>
+        <ul class="space-y-3 text-sm">
+          <li class="flex items-start gap-2">
+            <Icon name="CheckCircle2" class="w-4 h-4 text-brand-yellow-dark flex-shrink-0 mt-0.5" />
+            <span>Desplazamiento rápido por toda la comarca</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <Icon name="CheckCircle2" class="w-4 h-4 text-brand-yellow-dark flex-shrink-0 mt-0.5" />
+            <span>Provincias de Zamora y León</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <Icon name="CheckCircle2" class="w-4 h-4 text-brand-yellow-dark flex-shrink-0 mt-0.5" />
+            <span>Consulta disponibilidad para tu municipio</span>
+          </li>
+        </ul>
+        <Button href="/contacto" variant="primary" class="mt-6 w-full justify-center" icon="Phone">
+          Consulta disponibilidad
+        </Button>
+      </div>
+    </div>
+  </Section>
+
+  <!-- Bloque SEO: un párrafo por área -->
+  <Section bg="gray">
+    <div class="max-w-3xl mx-auto">
+      <SectionHeading eyebrow="SEO Local" title="Electricista en Benavente y alrededores" center />
+      <div class="mt-8 space-y-4 text-brand-gray leading-relaxed text-sm md:text-base">
+        <p>
+          Si buscas un <strong class="text-brand-black">electricista en Benavente</strong> o en cualquier
+          municipio de la comarca, estoy a tu disposición para instalaciones, averías, boletines
+          y mantenimiento eléctrico.
+        </p>
+        <p>
+          También presto servicio en <strong class="text-brand-black">Valencia de Don Juan</strong> y
+          su entorno en la provincia de León, así como en{' '}
+          <strong class="text-brand-black">Morales del Rey</strong> y otros municipios zamoranos.
+        </p>
+        <p>
+          Todos mis trabajos cumplen con la normativa eléctrica vigente y van acompañados de la
+          documentación oficial necesaria para contratar el suministro o tramitar el boletín eléctrico.
+        </p>
+      </div>
+    </div>
+  </Section>
+
+  <CtaFinal />
+</Layout>

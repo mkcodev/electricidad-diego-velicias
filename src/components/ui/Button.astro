@@ -1,0 +1,44 @@
+---
+// Botón / enlace de marca. Variantes según DESIGN_SYSTEM §5.
+// <Button href="/contacto" variant="primary" icon="Phone">Pide presupuesto</Button>
+import Icon from './Icon.astro';
+
+interface Props {
+  href?: string;
+  variant?: 'primary' | 'secondary' | 'outline';
+  icon?: string;
+  iconRight?: boolean;
+  type?: 'button' | 'submit';
+  class?: string;
+  'aria-label'?: string;
+}
+
+const {
+  href,
+  variant = 'primary',
+  icon,
+  iconRight = false,
+  type = 'button',
+  class: className = '',
+  'aria-label': ariaLabel,
+} = Astro.props;
+
+const variants = {
+  primary: 'btn-primary',
+  secondary: 'btn-secondary',
+  outline: 'btn-outline',
+};
+const cls = `${variants[variant]} ${className}`.trim();
+const Tag = href ? 'a' : 'button';
+---
+
+<Tag
+  class={cls}
+  href={href}
+  type={href ? undefined : type}
+  aria-label={ariaLabel}
+>
+  {icon && !iconRight && <Icon name={icon} class="w-5 h-5" />}
+  <slot />
+  {icon && iconRight && <Icon name={icon} class="w-5 h-5" />}
+</Tag>

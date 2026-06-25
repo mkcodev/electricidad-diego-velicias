@@ -1,0 +1,17 @@
+---
+// Botón flotante de WhatsApp con anillo de pulso discreto.
+import { WHATSAPP_URL } from '@data/site';
+import WhatsappSvg from '@ui/WhatsappSvg.astro';
+---
+
+<a
+  href={WHATSAPP_URL}
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="Escríbenos por WhatsApp"
+  class="fixed bottom-6 right-6 z-50 grid place-items-center w-14 h-14 rounded-full
+         bg-whatsapp text-white shadow-card-hover transition-transform hover:scale-105"
+>
+  <span class="absolute inset-0 rounded-full bg-whatsapp animate-pulse-ring -z-10"></span>
+  <WhatsappSvg class="w-7 h-7" />
+</a>

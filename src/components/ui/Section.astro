@@ -1,0 +1,23 @@
+---
+// Wrapper de sección: padding vertical estándar + contenedor centrado.
+// <Section bg="gray" id="servicios"> ... </Section>
+interface Props {
+  bg?: 'white' | 'gray' | 'black' | 'yellow';
+  id?: string;
+  class?: string;
+  full?: boolean; // si true, no aplica el contenedor (para fondos a sangre)
+}
+
+const { bg = 'white', id, class: className = '', full = false } = Astro.props;
+
+const backgrounds = {
+  white: 'bg-brand-white text-brand-black',
+  gray: 'bg-brand-gray-light text-brand-black',
+  black: 'bg-brand-black text-brand-white',
+  yellow: 'bg-brand-yellow text-brand-black',
+};
+---
+
+<section id={id} class={`section ${backgrounds[bg]} ${className}`.trim()}>
+  {full ? <slot /> : <div class="container-web"><slot /></div>}
+</section>

@@ -1,0 +1,36 @@
+---
+import Section from '@ui/Section.astro';
+import SectionHeading from '@ui/SectionHeading.astro';
+import Icon from '@ui/Icon.astro';
+import BgBlueprint from '@ui/BgBlueprint.astro';
+import { VALORES } from '@data/site';
+---
+
+<Section bg="gray" class="relative overflow-hidden">
+  <!-- Blueprint grid sutil -->
+  <BgBlueprint />
+
+  <div class="relative z-10">
+    <div data-reveal data-reveal-variant="fadeUp">
+      <SectionHeading eyebrow="Por qué yo" title="Trabajo bien hecho y sin sustos" center />
+    </div>
+
+    <div class="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+      {VALORES.map((v, i) => (
+        <div
+          class="text-center group"
+          data-reveal
+          data-reveal-variant="fadeUp"
+          data-reveal-delay={(['0.1', '0.2', '0.3', '0.4'] as const)[i % 4]}
+        >
+          <span class="grid place-items-center w-16 h-16 mx-auto rounded-full bg-brand-black mb-4
+                        shadow-card transition-transform duration-300 group-hover:-translate-y-2">
+            <Icon name={v.icon} class="w-8 h-8 text-brand-yellow" />
+          </span>
+          <h3 class="text-display-sm">{v.titulo}</h3>
+          <p class="mt-2 text-sm text-brand-gray leading-relaxed">{v.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</Section>

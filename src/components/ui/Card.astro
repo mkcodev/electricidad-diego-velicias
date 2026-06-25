@@ -1,0 +1,14 @@
+---
+// Tarjeta base. <Card hover> ... </Card>
+interface Props {
+  hover?: boolean;
+  class?: string;
+  as?: 'div' | 'article' | 'a';
+  href?: string;
+}
+const { hover = true, class: className = '', as: Tag = 'div', href } = Astro.props;
+---
+
+<Tag href={href} class={`card ${hover ? 'card-hover' : ''} p-6 ${className}`.trim()}>
+  <slot />
+</Tag>

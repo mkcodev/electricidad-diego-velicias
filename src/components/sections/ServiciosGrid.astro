@@ -1,0 +1,83 @@
+---
+import Section from '@ui/Section.astro';
+import SectionHeading from '@ui/SectionHeading.astro';
+import Button from '@ui/Button.astro';
+import Card from '@ui/Card.astro';
+import Icon from '@ui/Icon.astro';
+import { SERVICIOS } from '@data/site';
+
+interface Props {
+  soloDestacados?: boolean;
+}
+const { soloDestacados = true } = Astro.props;
+const lista = soloDestacados
+  ? (SERVICIOS.filter((s) => s.destacado).length ? SERVICIOS.filter((s) => s.destacado) : SERVICIOS.slice(0, 4))
+  : SERVICIOS;
+---
+
+<Section bg="white" id="servicios">
+  <div data-reveal data-reveal-variant="fadeUp"><SectionHeading eyebrow="Servicios" title="En qué te puedo ayudar" center /></div>
+  <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    {lista.map((s, i) => (
+      <div
+        class="card-spotlight-wrap"
+        data-reveal
+        data-reveal-variant="fadeUp"
+        data-reveal-delay={(['0.08', '0.16', '0.24', '0.32'] as const)[i % 4]}
+      >
+        <Card as="a" href={`/servicios/${s.slug}`} class="flex flex-col group h-full">
+          <span class="grid place-items-center w-14 h-14 rounded-card bg-brand-yellow-soft mb-4
+                        transition-colors group-hover:bg-brand-yellow">
+            <Icon name={s.icon} class="w-7 h-7 text-brand-yellow-dark group-hover:text-brand-black transition-colors" />
+          </span>
+          <h3 class="text-display-sm">{s.titulo}</h3>
+          <p class="mt-2 text-sm text-brand-gray flex-1">{s.resumen}</p>
+          <span class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-brand-yellow-dark group-hover:gap-2 transition-all">
+            Ver más <Icon name="ArrowRight" class="w-4 h-4" />
+          </span>
+        </Card>
+      </div>
+    ))}
+  </div>
+  {soloDestacados && (
+    <div class="mt-10 text-center">
+      <Button href="/servicios" variant="secondary">Todos los servicios</Button>
+    </div>
+  )}
+</Section>
+
+<style>
+  .card-spotlight-wrap {
+    position: relative;
+  }
+  .card-spotlight-wrap::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 1rem;
+    background: radial-gradient(
+      circle 120px at var(--mx, 50%) var(--my, 50%),
+      rgba(247, 185, 4, 0.12),
+      transparent 70%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .card-spotlight-wrap:hover::before {
+    opacity: 1;
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>('.card-spotlight-wrap').forEach((wrap) => {
+    wrap.addEventListener('mousemove', (e) => {
+      const rect = wrap.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+      wrap.style.setProperty('--mx', `${x}%`);
+      wrap.style.setProperty('--my', `${y}%`);
+    });
+  });
+</script>

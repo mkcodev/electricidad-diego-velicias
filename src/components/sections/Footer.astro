@@ -1,0 +1,109 @@
+---
+import { Image } from 'astro:assets';
+import { SITE, NAV, SERVICIOS, WHATSAPP_URL } from '@data/site';
+import Icon from '@ui/Icon.astro';
+import WhatsappSvg from '@ui/WhatsappSvg.astro';
+import BgDotGrid from '@ui/BgDotGrid.astro';
+import logoWhite from '@assets/logo/logo-white.png';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-brand-black text-brand-white relative overflow-hidden">
+  <!-- Patrón sutil en el top del footer -->
+  <BgDotGrid glow="none" class="opacity-40" />
+
+  <div class="container-web py-14 grid gap-10 md:grid-cols-4 relative z-10 text-center md:text-left">
+    <!-- Marca -->
+    <div class="md:col-span-1">
+      <div class="flex items-center gap-2.5 mb-4 justify-center md:justify-start">
+        <Image
+          src={logoWhite}
+          alt={SITE.name}
+          width={40}
+          height={40}
+          class="w-10 h-10 object-contain flex-shrink-0"
+        />
+        <span class="font-display text-display-sm tracking-display">Diego Velicias</span>
+      </div>
+      <p class="text-sm text-brand-gray-border/80">{SITE.role}</p>
+      <p class="text-sm text-brand-gray-border/80 mt-2">{SITE.coverageArea}</p>
+    </div>
+
+    <!-- Navegación -->
+    <nav aria-label="Páginas">
+      <h2 class="font-display text-display-sm tracking-display mb-4">Web</h2>
+      <ul class="space-y-2 text-sm">
+        {NAV.map((i) => (
+          <li>
+            <a
+              href={i.href}
+              class="footer-link text-brand-gray-border/80 hover:text-brand-yellow transition-colors inline-flex items-center gap-1"
+            >
+              {i.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <!-- Servicios -->
+    <nav aria-label="Servicios">
+      <h2 class="font-display text-display-sm tracking-display mb-4">Servicios</h2>
+      <ul class="space-y-2 text-sm">
+        {SERVICIOS.slice(0, 5).map((s) => (
+          <li>
+            <a
+              href={`/servicios/${s.slug}`}
+              class="footer-link text-brand-gray-border/80 hover:text-brand-yellow transition-colors inline-flex items-center gap-1"
+            >
+              {s.titulo}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <!-- Contacto -->
+    <div>
+      <h2 class="font-display text-display-sm tracking-display mb-4">Contacto</h2>
+      <ul class="space-y-3 text-sm">
+        <li>
+          <a href={`tel:${SITE.phoneIntl}`} class="inline-flex items-center gap-2 hover:text-brand-yellow transition-colors">
+            <Icon name="Phone" class="w-4 h-4 text-brand-yellow flex-shrink-0" /> {SITE.phone}
+          </a>
+        </li>
+        <li>
+          <a href={`mailto:${SITE.email}`} class="inline-flex items-center gap-2 hover:text-brand-yellow transition-colors">
+            <Icon name="Mail" class="w-4 h-4 text-brand-yellow flex-shrink-0" /> {SITE.email}
+          </a>
+        </li>
+        <li>
+          <a href={WHATSAPP_URL} target="_blank" rel="noopener" class="inline-flex items-center gap-2 hover:text-brand-yellow transition-colors">
+            <WhatsappSvg class="w-4 h-4 text-brand-yellow flex-shrink-0" /> WhatsApp
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="border-t border-white/10 relative z-10">
+    <div class="container-web py-5 flex flex-col items-center sm:flex-row sm:items-center justify-between gap-3 text-xs text-brand-gray-border/70">
+      <p>© {year} {SITE.name}. Todos los derechos reservados.</p>
+      <nav class="flex gap-4" aria-label="Legal">
+        <a href="/aviso-legal" class="hover:text-brand-yellow transition-colors">Aviso legal</a>
+        <a href="/privacidad" class="hover:text-brand-yellow transition-colors">Privacidad</a>
+        <a href="/cookies" class="hover:text-brand-yellow transition-colors">Cookies</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer-link {
+    transition: color 0.25s ease, transform 0.25s ease;
+  }
+  .footer-link:hover {
+    transform: translateX(3px);
+  }
+</style>

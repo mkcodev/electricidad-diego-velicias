@@ -1,0 +1,10 @@
+---
+// Etiqueta / badge. <Badge icon="BadgeCheck">Autorizado</Badge>
+import Icon from './Icon.astro';
+interface Props { icon?: string; class?: string; }
+const { icon, class: className = '' } = Astro.props;
+---
+<span class={`badge ${className}`.trim()}>
+  {icon && <Icon name={icon} class="w-3.5 h-3.5" />}
+  <slot />
+</span>

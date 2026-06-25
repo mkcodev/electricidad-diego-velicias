@@ -1,0 +1,30 @@
+---
+// Icono de lucide en contexto estático (.astro).
+// Uso: <Icon name="PlugZap" class="w-6 h-6 text-brand-yellow-dark" />
+// El `name` debe ser el nombre PascalCase exacto de un icono de lucide.
+// (En islas React usar directamente `lucide-react`.)
+import * as Lucide from 'lucide-astro';
+
+interface Props {
+  name: string;
+  class?: string;
+  size?: number;
+  'aria-label'?: string;
+}
+
+const { name, class: className = 'w-6 h-6', size = 24, 'aria-label': ariaLabel } = Astro.props;
+
+const LucideIcon = (Lucide as Record<string, any>)[name];
+if (!LucideIcon) {
+  console.warn(`[Icon] Icono lucide no encontrado: "${name}". Revisa DESIGN_SYSTEM §6.`);
+}
+---
+
+{LucideIcon && (
+  <LucideIcon
+    size={size}
+    class={className}
+    aria-label={ariaLabel}
+    aria-hidden={ariaLabel ? undefined : 'true'}
+  />
+)}

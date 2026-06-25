@@ -1,0 +1,21 @@
+---
+import Layout from '@layouts/Layout.astro';
+import HeroHome from '@sections/HeroHome.astro';
+import ServiciosGrid from '@sections/ServiciosGrid.astro';
+import Valores from '@sections/Valores.astro';
+import ComoTrabajo from '@sections/ComoTrabajo.astro';
+import ZonaPreview from '@sections/ZonaPreview.astro';
+import Resenas from '@sections/Resenas.astro';
+import CtaFinal from '@sections/CtaFinal.astro';
+import { SITE } from '@data/site';
+---
+
+<Layout title={SITE.name} description={SITE.description}>
+  <HeroHome />
+  <ServiciosGrid soloDestacados={false} />
+  <Valores />
+  <ComoTrabajo />
+  <ZonaPreview />
+  <Resenas />
+  <CtaFinal />
+</Layout>

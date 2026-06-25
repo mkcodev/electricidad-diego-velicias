@@ -1,0 +1,57 @@
+---
+interface Props {
+  glow?: 'yellow' | 'none';
+  density?: 'normal' | 'dense';
+  class?: string;
+}
+
+const {
+  glow = 'yellow',
+  density = 'normal',
+  class: className = '',
+} = Astro.props;
+
+const size = density === 'dense' ? '20px 20px' : '28px 28px';
+---
+
+<div
+  class:list={['bg-dot-grid absolute inset-0 pointer-events-none', className]}
+  aria-hidden="true"
+  style={`--dot-size: ${size}; --glow: ${glow === 'yellow' ? '1' : '0'};`}
+>
+</div>
+
+<style>
+  .bg-dot-grid {
+    background-image:
+      radial-gradient(
+        circle,
+        rgba(255, 255, 255, 0.1) 1px,
+        transparent 1.5px
+      );
+    background-size: var(--dot-size, 28px 28px);
+    mask-image: radial-gradient(
+      ellipse 80% 80% at 50% 50%,
+      black 0%,
+      transparent 100%
+    );
+    -webkit-mask-image: radial-gradient(
+      ellipse 80% 80% at 50% 50%,
+      black 0%,
+      transparent 100%
+    );
+  }
+
+  .bg-dot-grid::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      ellipse 60% 50% at 50% 30%,
+      rgba(247, 185, 4, 0.16) 0%,
+      transparent 70%
+    );
+    opacity: var(--glow, 1);
+    pointer-events: none;
+  }
+</style>

@@ -1,0 +1,93 @@
+---
+import Layout from '@layouts/Layout.astro';
+import Section from '@ui/Section.astro';
+import Icon from '@ui/Icon.astro';
+import QuoteForm from '@react/QuoteForm';
+import { SITE, WHATSAPP_URL } from '@data/site';
+---
+
+<Layout
+  title="Contacto — Presupuesto gratis"
+  description={`Solicita presupuesto gratuito a ${SITE.name}. Electricista en ${SITE.coverageLabel}. Sin compromiso.`}
+>
+  <Section bg="black">
+    <div class="max-w-2xl">
+      <p class="eyebrow text-brand-yellow">Contacto</p>
+      <h1 class="text-display-lg mt-3">Pide tu presupuesto</h1>
+      <p class="mt-5 text-lg text-brand-gray-border/80">
+        Cuéntame qué necesitas y te respondo cuanto antes. El presupuesto es completamente
+        gratuito y sin compromiso.
+      </p>
+    </div>
+  </Section>
+
+  <Section bg="white">
+    <div class="grid md:grid-cols-5 gap-12 items-start">
+      <!-- Formulario (3/5 del ancho) -->
+      <div class="md:col-span-3">
+        <h2 class="text-display-sm mb-6">Formulario de contacto</h2>
+        <QuoteForm client:visible />
+      </div>
+
+      <!-- Datos de contacto (2/5 del ancho) -->
+      <aside class="md:col-span-2 space-y-6">
+        <h2 class="text-display-sm">Contacto directo</h2>
+        <ul class="space-y-4">
+          <li>
+            <a
+              href={`tel:${SITE.phoneIntl}`}
+              class="flex items-start gap-4 card p-5 group hover:border-brand-yellow transition-colors"
+            >
+              <span class="grid place-items-center w-12 h-12 rounded-full bg-brand-black flex-shrink-0">
+                <Icon name="Phone" class="w-6 h-6 text-brand-yellow" />
+              </span>
+              <div>
+                <p class="text-xs text-brand-gray uppercase tracking-wide font-semibold">Teléfono</p>
+                <p class="font-bold text-lg mt-0.5">{SITE.phone}</p>
+                <p class="text-sm text-brand-gray mt-1">{SITE.horario}</p>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a
+              href={WHATSAPP_URL}
+              target="_blank" rel="noopener noreferrer"
+              class="flex items-start gap-4 card p-5 group hover:border-brand-yellow transition-colors"
+            >
+              <span class="grid place-items-center w-12 h-12 rounded-full bg-whatsapp flex-shrink-0">
+                <Icon name="MessageCircle" class="w-6 h-6 text-white" />
+              </span>
+              <div>
+                <p class="text-xs text-brand-gray uppercase tracking-wide font-semibold">WhatsApp</p>
+                <p class="font-bold text-lg mt-0.5">{SITE.phone}</p>
+                <p class="text-sm text-brand-gray mt-1">Mensaje con texto precargado</p>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a
+              href={`mailto:${SITE.email}`}
+              class="flex items-start gap-4 card p-5 group hover:border-brand-yellow transition-colors"
+            >
+              <span class="grid place-items-center w-12 h-12 rounded-full bg-brand-gray-light flex-shrink-0">
+                <Icon name="Mail" class="w-6 h-6 text-brand-black" />
+              </span>
+              <div>
+                <p class="text-xs text-brand-gray uppercase tracking-wide font-semibold">Email</p>
+                <p class="font-bold mt-0.5 break-all">{SITE.email}</p>
+              </div>
+            </a>
+          </li>
+        </ul>
+
+        <div class="card p-5 bg-brand-gray-light border-0">
+          <p class="text-sm font-semibold flex items-center gap-2 mb-2">
+            <Icon name="MapPin" class="w-4 h-4 text-brand-yellow-dark" />
+            Zona de cobertura
+          </p>
+          <p class="text-sm text-brand-gray">{SITE.coverageArea}</p>
+        </div>
+      </aside>
+    </div>
+  </Section>
+</Layout>

@@ -1,0 +1,121 @@
+---
+import Section from '@ui/Section.astro';
+import Button from '@ui/Button.astro';
+import Badge from '@ui/Badge.astro';
+import Icon from '@ui/Icon.astro';
+import BgDotGrid from '@ui/BgDotGrid.astro';
+import { SITE } from '@data/site';
+---
+
+<Section bg="black" class="relative overflow-hidden">
+  <!-- Fondo dot grid + glow amarillo -->
+  <BgDotGrid glow="yellow" density="dense" />
+
+  <div class="relative z-10 grid md:grid-cols-2 gap-10 items-center min-h-[520px] py-4">
+    <div class="js-hero-text" data-hero-animate>
+      <div class="js-hero-item">
+        <Badge icon="BadgeCheck">{SITE.role}</Badge>
+      </div>
+      <h1 class="text-display-xl mt-5 js-hero-item">{SITE.tagline}</h1>
+      <p class="mt-5 text-lg text-brand-gray-border/80 max-w-xl js-hero-item">{SITE.subtagline}</p>
+
+      <div class="mt-8 flex flex-wrap gap-3 js-hero-item">
+        <Button href="/contacto" variant="primary" icon="FileText">Pide presupuesto</Button>
+        <a
+          href={`tel:${SITE.phoneIntl}`}
+          class="btn-outline border-brand-white/30 text-brand-white hover:bg-brand-white hover:text-brand-black"
+        >
+          <Icon name="Phone" class="w-5 h-5" />
+          {SITE.phone}
+        </a>
+      </div>
+
+      <ul class="mt-8 flex flex-col sm:flex-row gap-4 text-sm text-brand-gray-border/70 js-hero-item">
+        <li class="flex items-center gap-2">
+          <Icon name="BadgeCheck" class="w-4 h-4 text-brand-yellow flex-shrink-0" />
+          Electricista autorizado
+        </li>
+        <li class="flex items-center gap-2">
+          <Icon name="MapPin" class="w-4 h-4 text-brand-yellow flex-shrink-0" />
+          {SITE.coverageLabel}
+        </li>
+        <li class="flex items-center gap-2">
+          <Icon name="MessageCircle" class="w-4 h-4 text-brand-yellow flex-shrink-0" />
+          Presupuesto gratis
+        </li>
+      </ul>
+    </div>
+
+    <!-- Bolt SVG animado -->
+    <div class="hidden md:grid place-items-center" aria-hidden="true">
+      <div class="hero-orb grid place-items-center w-72 h-72 rounded-full bg-brand-yellow/6 border border-brand-yellow/15">
+        <div class="grid place-items-center w-48 h-48 rounded-full bg-brand-yellow/10 border border-brand-yellow/25">
+          <!-- SVG del rayo con draw animation -->
+          <svg
+            viewBox="0 0 100 120"
+            width="80"
+            height="96"
+            class="bolt-svg"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              class="bolt-path"
+              d="M60 5 L20 58 L48 58 L40 115 L80 52 L52 52 Z"
+              stroke="#F7B904"
+              stroke-width="3"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              fill="rgba(247,185,4,0.12)"
+            />
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</Section>
+
+<style>
+  /* Animación de dibujo del rayo */
+  .bolt-path {
+    stroke-dasharray: 340;
+    stroke-dashoffset: 340;
+    animation: bolt-draw 1.2s cubic-bezier(0.4, 0, 0.2, 1) 0.5s forwards;
+  }
+
+  @keyframes bolt-draw {
+    to { stroke-dashoffset: 0; }
+  }
+
+  /* Orb pulsante sutil */
+  .hero-orb {
+    animation: orb-pulse 4s ease-in-out infinite;
+  }
+
+  @keyframes orb-pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.03); }
+  }
+
+  /* Animaciones del rayo y orb mantenidas — son cortas y no son triggers vestibulares. */
+</style>
+
+<script>
+  import { initGsap, gsap } from '@lib/gsap-init';
+
+  initGsap();
+
+  const items = document.querySelectorAll<HTMLElement>('.js-hero-item');
+
+  if (items.length > 0) {
+    gsap.set(items, { opacity: 0, y: 24 });
+    gsap.to(items, {
+      opacity: 1,
+      y: 0,
+      duration: 0.7,
+      ease: 'power3.out',
+      stagger: 0.12,
+      delay: 0.2,
+    });
+  }
+</script>

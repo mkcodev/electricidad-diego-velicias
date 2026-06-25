@@ -1,0 +1,23 @@
+---
+import Layout from '@layouts/Layout.astro';
+import Section from '@ui/Section.astro';
+import Button from '@ui/Button.astro';
+import Icon from '@ui/Icon.astro';
+---
+
+<Layout title="Página no encontrada" noindex={true}>
+  <Section bg="white" class="min-h-[60vh] flex items-center">
+    <div class="max-w-lg mx-auto text-center">
+      <span class="font-display text-[8rem] leading-none text-brand-yellow block">404</span>
+      <h1 class="text-display-md mt-2">Página no encontrada</h1>
+      <p class="mt-4 text-brand-gray leading-relaxed">
+        La página que buscas no existe o ha cambiado de dirección.
+        Puede que hayas seguido un enlace incorrecto.
+      </p>
+      <div class="mt-10 flex flex-wrap justify-center gap-3">
+        <Button href="/" variant="primary" icon="Home">Ir al inicio</Button>
+        <Button href="/contacto" variant="secondary" icon="Phone">Contactar</Button>
+      </div>
+    </div>
+  </Section>
+</Layout>

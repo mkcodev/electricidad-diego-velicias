@@ -1,0 +1,37 @@
+---
+import Layout from '@layouts/Layout.astro';
+import Section from '@ui/Section.astro';
+import Button from '@ui/Button.astro';
+import Icon from '@ui/Icon.astro';
+import { SITE } from '@data/site';
+---
+
+<Layout
+  title="¡Mensaje enviado!"
+  description="Tu solicitud de presupuesto ha sido enviada correctamente."
+  noindex={true}
+>
+  <Section bg="white" class="min-h-[60vh] flex items-center">
+    <div class="max-w-lg mx-auto text-center">
+      <span class="grid place-items-center w-20 h-20 mx-auto rounded-full bg-brand-yellow mb-6">
+        <Icon name="CheckCircle2" class="w-10 h-10 text-brand-black" />
+      </span>
+      <h1 class="text-display-md">¡Gracias por contactarme!</h1>
+      <p class="mt-5 text-brand-gray leading-relaxed">
+        He recibido tu solicitud y te responderé lo antes posible.
+        Si necesitas respuesta urgente, llámame directamente:
+      </p>
+      <a
+        href={`tel:${SITE.phoneIntl}`}
+        class="mt-6 inline-flex items-center gap-2 text-xl font-bold text-brand-black hover:text-brand-yellow-dark transition-colors"
+      >
+        <Icon name="Phone" class="w-6 h-6 text-brand-yellow-dark" />
+        {SITE.phone}
+      </a>
+      <div class="mt-10 flex flex-wrap justify-center gap-3">
+        <Button href="/" variant="secondary">Volver al inicio</Button>
+        <Button href="/servicios" variant="outline">Ver servicios</Button>
+      </div>
+    </div>
+  </Section>
+</Layout>

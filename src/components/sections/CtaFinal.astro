@@ -1,0 +1,38 @@
+---
+import Section from '@ui/Section.astro';
+import Button from '@ui/Button.astro';
+import Icon from '@ui/Icon.astro';
+import BgDotGrid from '@ui/BgDotGrid.astro';
+import { SITE, WHATSAPP_URL } from '@data/site';
+---
+
+<Section bg="black" class="relative overflow-hidden">
+  <!-- Dot grid + glow amarillo centrado abajo -->
+  <BgDotGrid glow="yellow" />
+
+  <div
+    data-reveal
+    data-reveal-variant="fadeUp"
+    class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left"
+  >
+    <div>
+      <p class="eyebrow text-brand-yellow mb-2">¿Listo para empezar?</p>
+      <h2 class="text-display-md text-brand-white">¿Tienes una avería o un proyecto?</h2>
+      <p class="mt-3 text-brand-gray-border/80 max-w-lg">
+        Cuéntame qué necesitas y te paso presupuesto sin compromiso.
+        Sin letra pequeña, sin sorpresas.
+      </p>
+    </div>
+    <div class="flex flex-col sm:flex-row gap-3 flex-shrink-0">
+      <Button href="/contacto" variant="primary" icon="FileText">Pide presupuesto</Button>
+      <a
+        href={`tel:${SITE.phoneIntl}`}
+        class="btn-outline border-brand-white/30 text-brand-white hover:bg-brand-white hover:text-brand-black"
+        aria-label={`Llamar al ${SITE.phone}`}
+      >
+        <Icon name="Phone" class="w-5 h-5" />
+        {SITE.phone}
+      </a>
+    </div>
+  </div>
+</Section>

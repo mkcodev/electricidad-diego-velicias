@@ -1,0 +1,69 @@
+---
+import Layout from '@layouts/Layout.astro';
+import Section from '@ui/Section.astro';
+import { SITE } from '@data/site';
+---
+
+<Layout
+  title="Aviso legal"
+  description={`Aviso legal de ${SITE.name}. Información sobre el titular y condiciones de uso.`}
+  noindex={true}
+>
+  <Section bg="white">
+    <div class="max-w-3xl prose-legal">
+      <h1 class="text-display-lg mb-8">Aviso legal</h1>
+
+      <h2>Titular</h2>
+      <p>
+        En cumplimiento de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad
+        de la Información y del Comercio Electrónico (LSSICE), se facilita la siguiente información:
+      </p>
+      <ul>
+        <li><strong>Titular:</strong> {SITE.legalName} <span class="text-brand-yellow-dark">🟡 TODO: razón social completa</span></li>
+        <li><strong>NIF/CIF:</strong> <span class="text-brand-yellow-dark">🟡 TODO: NIF del autónomo</span></li>
+        <li><strong>Correo electrónico:</strong> {SITE.email}</li>
+        <li><strong>Teléfono:</strong> {SITE.phone}</li>
+        <li><strong>Ámbito de actividad:</strong> {SITE.coverageArea}</li>
+      </ul>
+
+      <h2>Objeto</h2>
+      <p>
+        El presente Aviso Legal regula el uso del sitio web <strong>{SITE.domain}</strong>,
+        del que es titular {SITE.legalName}.
+      </p>
+
+      <h2>Propiedad intelectual</h2>
+      <p>
+        Los contenidos del sitio web, incluyendo textos, imágenes y diseño, son propiedad de
+        {SITE.name} y están protegidos por la legislación española e internacional de propiedad intelectual.
+      </p>
+
+      <h2>Exclusión de garantías y responsabilidad</h2>
+      <p>
+        El titular no garantiza la ausencia de virus u otros elementos lesivos en el sitio.
+        Los contenidos pueden ser modificados sin previo aviso.
+      </p>
+
+      <h2>Legislación aplicable</h2>
+      <p>
+        El presente Aviso Legal se rige por la legislación española.
+        Ante cualquier controversia, las partes se someten a los Juzgados y Tribunales del domicilio del usuario.
+      </p>
+    </div>
+  </Section>
+</Layout>
+
+<style>
+  .prose-legal :global(h2) {
+    @apply font-display tracking-display uppercase text-display-sm mt-8 mb-3;
+  }
+  .prose-legal :global(p), .prose-legal :global(li) {
+    @apply text-brand-gray leading-relaxed mb-3;
+  }
+  .prose-legal :global(ul) {
+    @apply list-disc pl-5 space-y-1;
+  }
+  .prose-legal :global(strong) {
+    @apply text-brand-black font-semibold;
+  }
+</style>

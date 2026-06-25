@@ -1,0 +1,46 @@
+---
+import Layout from '@layouts/Layout.astro';
+import Section from '@ui/Section.astro';
+import SectionHeading from '@ui/SectionHeading.astro';
+import Card from '@ui/Card.astro';
+import Icon from '@ui/Icon.astro';
+import Button from '@ui/Button.astro';
+import CtaFinal from '@sections/CtaFinal.astro';
+import { SERVICIOS, SITE } from '@data/site';
+---
+
+<Layout
+  title="Servicios de electricidad"
+  description={`Instalaciones eléctricas, averías, boletines y mantenimiento en ${SITE.coverageLabel}. ${SITE.name}.`}
+>
+  <Section bg="black">
+    <div class="max-w-2xl">
+      <p class="eyebrow text-brand-yellow">Servicios</p>
+      <h1 class="text-display-lg mt-3">Todo lo que puedo hacer por ti</h1>
+      <p class="mt-5 text-lg text-brand-gray-border/80">
+        Electricista autorizado para instalaciones, reparaciones, boletines y mantenimiento
+        en la comarca de Benavente y alrededores.
+      </p>
+    </div>
+  </Section>
+
+  <Section bg="white">
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {SERVICIOS.map((s) => (
+        <Card as="a" href={`/servicios/${s.slug}`} class="flex flex-col group">
+          <span class="grid place-items-center w-14 h-14 rounded-card bg-brand-yellow-soft mb-4
+                        transition-colors group-hover:bg-brand-yellow">
+            <Icon name={s.icon} class="w-7 h-7 text-brand-yellow-dark group-hover:text-brand-black transition-colors" />
+          </span>
+          <h2 class="text-display-sm">{s.titulo}</h2>
+          <p class="mt-2 text-sm text-brand-gray flex-1 leading-relaxed">{s.resumen}</p>
+          <span class="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-brand-yellow-dark group-hover:gap-2 transition-all">
+            Ver más <Icon name="ArrowRight" class="w-4 h-4" />
+          </span>
+        </Card>
+      ))}
+    </div>
+  </Section>
+
+  <CtaFinal />
+</Layout>

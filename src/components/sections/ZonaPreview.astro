@@ -1,0 +1,46 @@
+---
+import Section from '@ui/Section.astro';
+import SectionHeading from '@ui/SectionHeading.astro';
+import Button from '@ui/Button.astro';
+import Icon from '@ui/Icon.astro';
+import BgBlueprint from '@ui/BgBlueprint.astro';
+import { ZONAS, SITE } from '@data/site';
+---
+
+<Section bg="gray" class="relative overflow-hidden">
+  <!-- Blueprint con acento amarillo -->
+  <BgBlueprint accent />
+
+  <div class="relative z-10 grid md:grid-cols-2 gap-10 items-center">
+    <div data-reveal data-reveal-variant="fadeLeft">
+      <SectionHeading
+        eyebrow="Zona de cobertura"
+        title="Trabajo en tu pueblo"
+      />
+      <p class="mt-4 text-brand-gray leading-relaxed">
+        Me desplazo por la <strong class="text-brand-black">comarca de Benavente</strong> y alrededores,
+        entre las provincias de <strong class="text-brand-black">Zamora y León</strong>.
+        Si tienes dudas sobre si llego a tu zona, pregúntame sin compromiso.
+      </p>
+      <Button href="/zona-de-cobertura" variant="secondary" class="mt-6" icon="MapPin">
+        Ver zona completa
+      </Button>
+    </div>
+
+    <div data-reveal data-reveal-variant="fadeRight" data-reveal-delay="0.16">
+      <ul class="grid grid-cols-2 gap-2">
+        {ZONAS.map((zona) => (
+          <li class="zona-chip flex items-center gap-2 bg-brand-white rounded-btn px-4 py-2.5 shadow-card text-sm font-semibold
+                      transition-all duration-250 ease-smooth hover:-translate-y-1 hover:border-brand-yellow hover:shadow-card-hover border border-transparent">
+            <Icon name="MapPin" class="w-4 h-4 text-brand-yellow flex-shrink-0" />
+            {zona}
+          </li>
+        ))}
+        <li class="flex items-center gap-2 bg-brand-yellow-soft rounded-btn px-4 py-2.5 shadow-card text-sm font-semibold col-span-2">
+          <Icon name="Plus" class="w-4 h-4 text-brand-yellow-dark flex-shrink-0" />
+          Y muchos más municipios — consulta sin compromiso
+        </li>
+      </ul>
+    </div>
+  </div>
+</Section>

@@ -1,0 +1,81 @@
+---
+import Layout from '@layouts/Layout.astro';
+import Section from '@ui/Section.astro';
+import SectionHeading from '@ui/SectionHeading.astro';
+import Icon from '@ui/Icon.astro';
+import Button from '@ui/Button.astro';
+import CtaFinal from '@sections/CtaFinal.astro';
+import { SITE, VALORES } from '@data/site';
+---
+
+<Layout
+  title="Sobre mí"
+  description={`Conoce a Diego Velicias, electricista autorizado en ${SITE.coverageLabel}. ${SITE.role}.`}
+>
+  <Section bg="black">
+    <div class="max-w-2xl">
+      <p class="eyebrow text-brand-yellow">Sobre mí</p>
+      <h1 class="text-display-lg mt-3">Diego Velicias, electricista de confianza</h1>
+      <p class="mt-5 text-lg text-brand-gray-border/80 leading-relaxed">
+        Soy electricista autorizado y técnico especialista en la comarca de Benavente.
+        Llevo años trabajando en instalaciones eléctricas, averías y mantenimiento
+        en Zamora y León, con el trato cercano y la garantía que te mereces.
+      </p>
+    </div>
+  </Section>
+
+  <Section bg="white">
+    <div class="grid md:grid-cols-2 gap-14 items-start">
+      <div>
+        <SectionHeading eyebrow="Mi historia" title="Electricista de la zona" />
+        <div class="mt-6 space-y-4 text-brand-gray leading-relaxed">
+          <p>
+            Me formé como técnico especialista en electricidad y desde entonces
+            he trabajado en todo tipo de proyectos: viviendas nuevas, reformas integrales,
+            instalaciones industriales y servicio de averías para particulares y comunidades.
+          </p>
+          <p>
+            Trabajo en la comarca de Benavente y alrededores, entre Zamora y León.
+            Conozco la zona, me desplazo con rapidez y resuelvo a la primera.
+          </p>
+          <p>
+            Todos mis trabajos se realizan conforme a normativa y van acompañados
+            de la documentación necesaria: boletín eléctrico, garantía y factura.
+          </p>
+        </div>
+        {SITE.installerNumber && (
+          <p class="mt-6 flex items-center gap-2 text-sm font-semibold">
+            <Icon name="BadgeCheck" class="w-5 h-5 text-brand-yellow-dark" />
+            Nº instalador: {SITE.installerNumber}
+          </p>
+        )}
+        {SITE.yearsExperience && (
+          <p class="mt-2 flex items-center gap-2 text-sm font-semibold">
+            <Icon name="Clock" class="w-5 h-5 text-brand-yellow-dark" />
+            {SITE.yearsExperience} años de experiencia
+          </p>
+        )}
+        <Button href="/contacto" variant="primary" class="mt-8" icon="FileText">
+          Pide tu presupuesto
+        </Button>
+      </div>
+
+      <div class="space-y-4">
+        <h2 class="text-display-sm mb-6">Por qué elegirme</h2>
+        {VALORES.map((v) => (
+          <div class="flex items-start gap-4 card p-5">
+            <span class="grid place-items-center w-12 h-12 rounded-full bg-brand-black flex-shrink-0">
+              <Icon name={v.icon} class="w-6 h-6 text-brand-yellow" />
+            </span>
+            <div>
+              <h3 class="font-semibold">{v.titulo}</h3>
+              <p class="text-sm text-brand-gray mt-1 leading-relaxed">{v.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </Section>
+
+  <CtaFinal />
+</Layout>

@@ -1,0 +1,51 @@
+---
+interface Props {
+  accent?: boolean;
+  class?: string;
+}
+
+const { accent = false, class: className = '' } = Astro.props;
+---
+
+<div
+  class:list={['bg-blueprint absolute inset-0 pointer-events-none', className]}
+  aria-hidden="true"
+  data-accent={accent ? 'true' : undefined}
+>
+</div>
+
+<style>
+  .bg-blueprint {
+    background-image:
+      linear-gradient(rgba(26, 26, 26, 0.055) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(26, 26, 26, 0.055) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: linear-gradient(
+      180deg,
+      transparent 0%,
+      rgba(0, 0, 0, 0.6) 20%,
+      rgba(0, 0, 0, 0.6) 80%,
+      transparent 100%
+    );
+    -webkit-mask-image: linear-gradient(
+      180deg,
+      transparent 0%,
+      rgba(0, 0, 0, 0.6) 20%,
+      rgba(0, 0, 0, 0.6) 80%,
+      transparent 100%
+    );
+  }
+
+  .bg-blueprint[data-accent='true']::before {
+    content: '';
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: rgba(247, 185, 4, 0.5);
+    /* Intersección aproximada al centro */
+    top: calc(50% - 2px);
+    left: calc(50% - 2px);
+    box-shadow: 0 0 12px 6px rgba(247, 185, 4, 0.15);
+  }
+</style>

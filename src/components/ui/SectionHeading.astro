@@ -1,0 +1,27 @@
+---
+// Encabezado de sección: eyebrow + título display + barra de acento.
+// <SectionHeading eyebrow="Servicios" title="Lo que hago por ti" center />
+interface Props {
+  eyebrow?: string;
+  title: string;
+  center?: boolean;
+  as?: 'h1' | 'h2' | 'h3';
+  size?: 'display-lg' | 'display-md' | 'display-sm';
+  class?: string;
+}
+
+const {
+  eyebrow,
+  title,
+  center = false,
+  as: Tag = 'h2',
+  size = 'display-md',
+  class: className = '',
+} = Astro.props;
+---
+
+<div class={`${center ? 'text-center' : ''} ${className}`.trim()}>
+  {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+  <Tag class={`text-${size} mt-2`}>{title}</Tag>
+  <span class={`accent-bar mt-3 ${center ? 'mx-auto' : ''}`}></span>
+</div>

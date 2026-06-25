@@ -1,0 +1,51 @@
+---
+import { Image } from 'astro:assets';
+import { SITE } from '@data/site';
+import logoBlack from '@assets/logo/logo-black.png';
+import logoWhite from '@assets/logo/logo-white.png';
+
+interface Props {
+  class?: string;
+}
+
+const { class: className = '' } = Astro.props;
+---
+
+<a
+  href="/"
+  class:list={['logo-lockup flex items-center gap-3 flex-shrink-0', className]}
+  aria-label={`${SITE.name} — Inicio`}
+>
+  <!-- Logo imagen con cross-fade (mantenido en Header con clases CSS globales) -->
+  <span class="logo-img-wrap relative flex-shrink-0 w-14 h-14">
+    <Image
+      src={logoBlack}
+      alt={SITE.name}
+      width={56}
+      height={56}
+      class="logo-on-light absolute inset-0 w-full h-full object-contain select-none"
+      loading="eager"
+      decoding="async"
+    />
+    <Image
+      src={logoWhite}
+      alt=""
+      aria-hidden="true"
+      width={56}
+      height={56}
+      class="logo-on-dark absolute inset-0 w-full h-full object-contain select-none"
+      loading="eager"
+      decoding="async"
+    />
+  </span>
+
+  <!-- Nombre + subtítulo -->
+  <span class="logo-text flex flex-col leading-none">
+    <span class="font-display tracking-display text-[1.35rem] uppercase leading-none logo-name">
+      Diego Velicias
+    </span>
+    <span class="logo-sub font-sans text-[0.6rem] uppercase tracking-[0.1em] font-medium mt-0.5 opacity-60">
+      Electricista autorizado
+    </span>
+  </span>
+</a>

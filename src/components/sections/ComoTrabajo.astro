@@ -1,0 +1,56 @@
+---
+import Section from '@ui/Section.astro';
+import SectionHeading from '@ui/SectionHeading.astro';
+import Icon from '@ui/Icon.astro';
+import Button from '@ui/Button.astro';
+
+const pasos = [
+  {
+    numero: '01',
+    icon: 'Phone',
+    titulo: 'Me contactas',
+    desc: 'Llámame, escríbeme por WhatsApp o usa el formulario. Cuéntame qué necesitas y te respondo enseguida.',
+  },
+  {
+    numero: '02',
+    icon: 'ClipboardList',
+    titulo: 'Visita y presupuesto',
+    desc: 'Me paso a ver el trabajo y te doy un presupuesto claro, sin letra pequeña ni sorpresas.',
+  },
+  {
+    numero: '03',
+    icon: 'BadgeCheck',
+    titulo: 'Trabajo realizado',
+    desc: 'Ejecuto la instalación o reparación con garantía y te entrego toda la documentación necesaria.',
+  },
+];
+---
+
+<Section bg="white">
+  <div data-reveal data-reveal-variant="fadeUp"><SectionHeading eyebrow="Cómo trabajo" title="Fácil y sin complicaciones" center /></div>
+  <div class="mt-14 grid gap-8 sm:grid-cols-3 relative">
+    <!-- Línea conectora (solo desktop) -->
+    <div class="hidden sm:block absolute top-10 left-1/3 right-1/3 h-px bg-brand-gray-border" aria-hidden="true"></div>
+
+    {pasos.map((paso, i) => (
+      <div
+        class="relative flex flex-col items-center text-center"
+        data-reveal
+        data-reveal-variant="fadeUp"
+        data-reveal-delay={(['0.08', '0.16', '0.24'] as const)[i]}
+      >
+        <div class="relative z-10 flex flex-col items-center">
+          <span class="w-20 h-20 grid place-items-center rounded-full bg-brand-black shadow-card mb-5">
+            <Icon name={paso.icon} class="w-8 h-8 text-brand-yellow" />
+          </span>
+          <span class="eyebrow mb-2">{paso.numero}</span>
+          <h3 class="text-display-sm">{paso.titulo}</h3>
+          <p class="mt-3 text-sm text-brand-gray leading-relaxed max-w-xs">{paso.desc}</p>
+        </div>
+      </div>
+    ))}
+  </div>
+  <div data-reveal data-reveal-variant="scale" class="mt-12 text-center">
+    <Button href="/contacto" variant="primary" icon="ArrowRight" iconRight>Pide tu presupuesto</Button>
+  </div>
+</Section>
