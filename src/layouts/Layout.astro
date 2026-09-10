@@ -4,6 +4,7 @@ import Header from '@sections/Header.astro';
 import Footer from '@sections/Footer.astro';
 import WhatsappFab from '@sections/WhatsappFab.astro';
 import SmoothScroll from '@react/SmoothScroll';
+import Analytics from '@vercel/analytics/astro';
 import { SITE } from '@data/site';
 import { pageTitle, localBusinessSchema } from '@lib/seo';
 
@@ -95,5 +96,7 @@ const schema = localBusinessSchema(Astro.site?.toString() ?? SITE.url);
     </main>
     <Footer />
     <WhatsappFab />
+    {/* Analítica de visitas sin cookies (solo activa en despliegue Vercel) */}
+    <Analytics />
   </body>
 </html>
