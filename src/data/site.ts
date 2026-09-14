@@ -155,3 +155,39 @@ export const ZONAS = [
   'Benavente', 'Morales del Rey', 'Valencia de Don Juan',
   'Santa Cristina de la Polvorosa', 'San Cristóbal de Entreviñas',
 ];
+
+// Un párrafo único por municipio para /zona-de-cobertura (SEO local long-tail).
+// Cada texto varía el énfasis de servicio para evitar contenido casi duplicado.
+export type ZonaInfo = { slug: string; nombre: string; texto: string };
+export const ZONAS_INFO: ZonaInfo[] = [
+  {
+    slug: 'benavente',
+    nombre: 'Benavente',
+    texto:
+      'Como electricista autorizado en Benavente, atiendo instalaciones eléctricas nuevas, reformas y averías urgentes en viviendas, locales y comunidades de vecinos, con el boletín eléctrico tramitado cuando es necesario.',
+  },
+  {
+    slug: 'morales-del-rey',
+    nombre: 'Morales del Rey',
+    texto:
+      'En Morales del Rey y su entorno realizo reparación de averías, revisión de cuadros eléctricos y mantenimiento preventivo, desplazándome con rapidez para resolver cortes de luz o diferenciales que saltan.',
+  },
+  {
+    slug: 'valencia-de-don-juan',
+    nombre: 'Valencia de Don Juan',
+    texto:
+      'En Valencia de Don Juan (León) ofrezco instalaciones eléctricas completas, ampliación de cuadros y puntos de luz, además de la tramitación del certificado de instalación eléctrica para dar de alta el suministro.',
+  },
+  {
+    slug: 'santa-cristina-de-la-polvorosa',
+    nombre: 'Santa Cristina de la Polvorosa',
+    texto:
+      'También trabajo en Santa Cristina de la Polvorosa: diagnóstico y reparación de averías eléctricas, cambios de potencia y mantenimiento para viviendas y negocios de la zona.',
+  },
+  {
+    slug: 'san-cristobal-de-entrevinas',
+    nombre: 'San Cristóbal de Entreviñas',
+    texto:
+      'En San Cristóbal de Entreviñas presto servicio de electricista para instalaciones, boletines eléctricos y revisiones de mantenimiento, con presupuesto gratuito y sin compromiso.',
+  },
+];

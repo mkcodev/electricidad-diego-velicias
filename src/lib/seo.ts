@@ -48,6 +48,20 @@ export function serviceSchema(servicio: Servicio, siteUrl: string) {
   };
 }
 
+// JSON-LD de listado de servicios, para /servicios (refuerza cobertura temática completa).
+export function serviceListSchema(servicios: Servicio[], siteUrl: string) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    itemListElement: servicios.map((s, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      url: `${siteUrl}/servicios/${s.slug}`,
+      name: s.titulo,
+    })),
+  };
+}
+
 // JSON-LD de migas de pan (breadcrumb), para páginas con navegación jerárquica.
 export function breadcrumbSchema(items: { name: string; path: string }[], siteUrl: string) {
   return {

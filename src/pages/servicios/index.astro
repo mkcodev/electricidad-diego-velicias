@@ -7,12 +7,17 @@ import Icon from '@ui/Icon.astro';
 import Button from '@ui/Button.astro';
 import CtaFinal from '@sections/CtaFinal.astro';
 import { SERVICIOS, SITE } from '@data/site';
+import { serviceListSchema } from '@lib/seo';
+
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? SITE.url;
+const listSchema = serviceListSchema(SERVICIOS, siteUrl);
 ---
 
 <Layout
-  title="Servicios de electricidad"
-  description={`Instalaciones eléctricas, averías, boletines y mantenimiento en ${SITE.coverageLabel}. ${SITE.name}.`}
+  title="Servicios de electricista en Benavente"
+  description={`Instalaciones eléctricas, averías, boletines y mantenimiento en Benavente y ${SITE.coverageLabel}. ${SITE.name}.`}
 >
+  <script type="application/ld+json" set:html={JSON.stringify(listSchema)} />
   <Section bg="black">
     <div class="max-w-2xl">
       <p class="eyebrow text-brand-yellow">Servicios</p>

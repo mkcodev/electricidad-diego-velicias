@@ -5,11 +5,11 @@ import SectionHeading from '@ui/SectionHeading.astro';
 import Icon from '@ui/Icon.astro';
 import Button from '@ui/Button.astro';
 import CtaFinal from '@sections/CtaFinal.astro';
-import { ZONAS, SITE } from '@data/site';
+import { ZONAS, ZONAS_INFO, SITE } from '@data/site';
 ---
 
 <Layout
-  title="Zona de cobertura"
+  title="Zona de cobertura: electricista en Zamora y León"
   description={`Electricista en ${ZONAS.slice(0, 3).join(', ')} y comarca de Benavente. ${SITE.name} se desplaza por Zamora y León.`}
 >
   <Section bg="black">
@@ -80,26 +80,25 @@ import { ZONAS, SITE } from '@data/site';
     </div>
   </Section>
 
-  <!-- Bloque SEO: un párrafo por área -->
+  <!-- Bloque SEO: un párrafo único por municipio (long-tail "electricista en X") -->
   <Section bg="gray">
-    <div class="max-w-3xl mx-auto">
-      <SectionHeading eyebrow="SEO Local" title="Electricista en Benavente y alrededores" center />
-      <div class="mt-8 space-y-4 text-brand-gray leading-relaxed text-sm md:text-base">
-        <p>
-          Si buscas un <strong class="text-brand-black">electricista en Benavente</strong> o en cualquier
-          municipio de la comarca, estoy a tu disposición para instalaciones, averías, boletines
-          y mantenimiento eléctrico.
-        </p>
-        <p>
-          También presto servicio en <strong class="text-brand-black">Valencia de Don Juan</strong> y
-          su entorno en la provincia de León, así como en{' '}
-          <strong class="text-brand-black">Morales del Rey</strong> y otros municipios zamoranos.
-        </p>
-        <p>
-          Todos mis trabajos cumplen con la normativa eléctrica vigente y van acompañados de la
-          documentación oficial necesaria para contratar el suministro o tramitar el boletín eléctrico.
-        </p>
+    <div class="max-w-4xl mx-auto">
+      <SectionHeading eyebrow="SEO Local" title="Electricista en cada municipio de la zona" center />
+      <div class="mt-10 grid gap-6 sm:grid-cols-2">
+        {ZONAS_INFO.map((z) => (
+          <div id={z.slug} class="card p-6">
+            <h3 class="text-display-sm flex items-center gap-2">
+              <Icon name="MapPin" class="w-5 h-5 text-brand-yellow-dark flex-shrink-0" />
+              Electricista en {z.nombre}
+            </h3>
+            <p class="mt-3 text-sm md:text-base text-brand-gray leading-relaxed">{z.texto}</p>
+          </div>
+        ))}
       </div>
+      <p class="mt-8 text-sm text-brand-gray text-center max-w-2xl mx-auto">
+        Todos mis trabajos cumplen con la normativa eléctrica vigente y van acompañados de la
+        documentación oficial necesaria para contratar el suministro o tramitar el boletín eléctrico.
+      </p>
     </div>
   </Section>
 
