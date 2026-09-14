@@ -85,13 +85,13 @@ Secciones (en `@sections`, una por archivo), en este orden vertical:
 
 ## Fase 6 — SEO técnico y pulido
 
-- [ ] `sitemap` generándose; `public/robots.txt` apuntando al sitemap.
-- [ ] `title`/`description` únicos por página; Open Graph con imagen.
-- [ ] JSON-LD `LocalBusiness`/`Electrician` con `areaServed` (pueblos), teléfono, horario.
-- [ ] `alt` en todas las imágenes; `<Image />` de astro:assets.
-- [ ] 404 personalizada (`pages/404.astro`).
+- [x] `sitemap` generándose; `public/robots.txt` apuntando al sitemap (excluye `/gracias`, que es `noindex`).
+- [x] `title`/`description` únicos por página; Open Graph con imagen (`og-default.png`, generada de marca).
+- [x] JSON-LD `LocalBusiness`/`Electrician` con `areaServed` (pueblos), teléfono, horario. + `Service` y `BreadcrumbList` en fichas de servicio, `FAQPage` en home.
+- [x] `alt` en todas las imágenes; `<Image />` de astro:assets.
+- [x] 404 personalizada (`pages/404.astro`).
 - [ ] Revisión de contraste y foco en toda la web.
-- [ ] Borrar `/sandbox` de pruebas.
+- [x] No hay `/sandbox` de pruebas.
 
 ---
 

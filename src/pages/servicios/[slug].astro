@@ -6,6 +6,7 @@ import Button from '@ui/Button.astro';
 import Card from '@ui/Card.astro';
 import CtaFinal from '@sections/CtaFinal.astro';
 import { SERVICIOS, SITE } from '@data/site';
+import { serviceSchema, breadcrumbSchema } from '@lib/seo';
 
 export function getStaticPaths() {
   return SERVICIOS.map((s) => ({ params: { slug: s.slug }, props: { servicio: s } }));
@@ -13,12 +14,25 @@ export function getStaticPaths() {
 
 const { servicio } = Astro.props;
 const relacionados = SERVICIOS.filter((s) => s.slug !== servicio.slug).slice(0, 3);
+
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? SITE.url;
+const schema = serviceSchema(servicio, siteUrl);
+const breadcrumb = breadcrumbSchema(
+  [
+    { name: 'Inicio', path: '/' },
+    { name: 'Servicios', path: '/servicios' },
+    { name: servicio.titulo, path: `/servicios/${servicio.slug}` },
+  ],
+  siteUrl
+);
 ---
 
 <Layout
   title={servicio.titulo}
   description={`${servicio.resumen} Electricista autorizado en ${SITE.coverageLabel}. ${SITE.name}.`}
 >
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumb)} />
   <!-- Cabecera del servicio -->
   <Section bg="black">
     <nav class="flex items-center gap-2 text-sm text-brand-gray-border/60 mb-6" aria-label="Breadcrumb">

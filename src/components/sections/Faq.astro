@@ -1,0 +1,39 @@
+---
+// Sección de preguntas frecuentes. Usa <details> nativo (sin JS) y aporta
+// datos estructurados FAQPage para optar a rich snippets en Google.
+import Section from '@ui/Section.astro';
+import SectionHeading from '@ui/SectionHeading.astro';
+import Icon from '@ui/Icon.astro';
+import { FAQS } from '@data/site';
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: FAQS.map((f) => ({
+    '@type': 'Question',
+    name: f.pregunta,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: f.respuesta,
+    },
+  })),
+};
+---
+
+<Section bg="gray" id="faq">
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <div data-reveal data-reveal-variant="fadeUp" class="max-w-3xl mx-auto">
+    <SectionHeading eyebrow="Dudas frecuentes" title="Preguntas frecuentes" center />
+    <div class="mt-10 divide-y divide-brand-gray-border">
+      {FAQS.map((f) => (
+        <details class="group py-5">
+          <summary class="flex items-center justify-between gap-4 cursor-pointer list-none font-semibold text-brand-black">
+            {f.pregunta}
+            <Icon name="ChevronDown" class="w-5 h-5 flex-shrink-0 text-brand-yellow-dark transition-transform group-open:rotate-180" />
+          </summary>
+          <p class="mt-3 text-brand-gray leading-relaxed">{f.respuesta}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</Section>

@@ -8,8 +8,8 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const SITE = {
-  name:      'Electricidades Diego Velicias', // ✅
-  shortName: 'Diego Velicias',                // ✅
+  name:      'Diego Velicias Electricidad', // ✅ alineado con la ficha de Google Business
+  shortName: 'Diego Velicias',              // ✅
   legalName: 'Diego Velicias',                // 🟡 TODO: ¿autónomo o SL? nombre fiscal
   tagline:   'Electricista autorizado en la comarca de Benavente', // 🟡 confirmar eslogan
   subtagline:'Instalaciones, averías y mantenimiento eléctrico con garantía y trato cercano.',
@@ -21,7 +21,7 @@ export const SITE = {
   email:        'info@diegovelicias.com',          // ✅ principal
   emailAlt:     'diegoveliciaselectricidad@gmail.com', // ✅ secundario
   formEmail:    'diegoveliciaselectricidad@gmail.com', // 🟡 a Gmail por ahora; webmail luego
-  horario:      'Lunes a Viernes · 8:00–19:00',    // 🟡 confirmar
+  horario:      'Lunes a Viernes · 8:00–20:00',    // ✅ según ficha de Google Business
   urgencias24h: false,                              // 🟡 confirmar
 
   baseTowns:    ['Morales del Rey', 'Valencia de Don Juan'], // ✅
@@ -32,8 +32,8 @@ export const SITE = {
   installerNumber: '', // 🟡 nº instalador + categoría
   yearsExperience: '', // 🟡 años de experiencia
 
-  domain: 'electricidadesvelicias.es', // 🟡 confirmar dominio (Hostinger)
-  url:    'https://electricidadesvelicias.es',
+  domain: 'electricidad-diego-velicias.vercel.app', // 🟡 dominio provisional; cambiar al comprar dominio propio en Hostinger
+  url:    'https://electricidad-diego-velicias.vercel.app',
 
   social: {
     instagram: '',      // 🟡
